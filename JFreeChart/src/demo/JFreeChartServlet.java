@@ -266,27 +266,19 @@ public class JFreeChartServlet {
 		plot.setForegroundAlpha(1.0f);
 
 		FileOutputStream fos_jpg = null;
-		try
-		{
+		try {
 			isChartPathExist(CHART_PATH);
 			String chartName = CHART_PATH + charName;
 			fos_jpg = new FileOutputStream(chartName);
 			ChartUtilities.writeChartAsPNG(fos_jpg, chart, 500, 500, true, 10);
 			return chartName;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				fos_jpg.close();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -366,27 +358,19 @@ public class JFreeChartServlet {
 		plot.setForegroundAlpha(0.6f);
 
 		FileOutputStream fos_jpg = null;
-		try
-		{
+		try {
 			isChartPathExist(CHART_PATH);
 			String chartName = CHART_PATH + charName;
 			fos_jpg = new FileOutputStream(chartName);
 			ChartUtilities.writeChartAsPNG(fos_jpg, chart, 500, 500, true, 10);
 			return chartName;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				fos_jpg.close();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -456,47 +440,34 @@ public class JFreeChartServlet {
 		plot.setSectionPaint(pieKeys[0], new Color(244, 194, 144));
 		plot.setSectionPaint(pieKeys[1], new Color(144, 233, 144));
 
-		FileOutputStream fos_jpg = null;
-		try
-		{
+		FileOutputStream fosChart = null;
+		try {
 			// 文件夹不存在则创建
 			isChartPathExist(CHART_PATH);
 			String chartName = CHART_PATH + charName;
-			fos_jpg = new FileOutputStream(chartName);
+			fosChart = new FileOutputStream(chartName);
 			// 高宽的设置影响椭圆饼图的形状
-			ChartUtilities.writeChartAsPNG(fos_jpg, chart, 500, 230);
-
+			ChartUtilities.writeChartAsPNG(fosChart, chart, 500, 230);
 			return chartName;
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
-		}
-		finally
-		{
-			try
-			{
-				fos_jpg.close();
-				System.out.println("create pie-chart.");
-			}
-			catch (Exception e)
-			{
+		} finally {
+			try {
+				fosChart.close();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
+		return null;
 	}
 
 	/**
 	 * 判断文件夹是否存在，如果不存在则新建
 	 * @param chartPath
 	 */
-	private void isChartPathExist(String chartPath)
-	{
+	private void isChartPathExist(String chartPath) {
 		File file = new File(chartPath);
-		if (!file.exists())
-		{
+		if (!file.exists()) {
 			file.mkdirs();
 			// log.info("CHART_PATH="+CHART_PATH+"create.");
 		}
